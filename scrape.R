@@ -14,9 +14,9 @@ page <- read_html(url)
 
 Bitcoin <- page %>% html_table() %>%
   as.data.frame() %>%  
-  select(-8) %>% #drop column %>%
   mutate(DateTime = Sys.time()) %>%
-  subset(Rank == 1 )
+  subset(Rank == 1 ) %>% #select baris bitcoin pada dataframe
+  select(-1,-2,-8) #drop column
 
 message("Connect to MongoDB Cloud")
 atlas <- mongo(
@@ -27,7 +27,7 @@ atlas <- mongo(
 
 # covid <- data.frame(no=integer(), cases=character(), deaths=character(), recovered=character())
 message("Store data frame into mongo cloud")
-newdata <- Bitcoin
+newdata <- cbind(no = atlas$count() + 1, Bitcoin)
 
 atlas$insert(newdata)
 

@@ -16,7 +16,6 @@ Bitcoin <- page %>% html_table() %>%
   as.data.frame() %>%  
   mutate(DateTime = Sys.time()) %>%
   subset(Rank == 1 ) %>% #select baris bitcoin pada dataframe
-  select(-1,-2,-8) #drop column
 
 message("Connect to MongoDB Cloud")
 atlas <- mongo(

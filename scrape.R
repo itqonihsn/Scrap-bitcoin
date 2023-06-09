@@ -15,7 +15,7 @@ page <- read_html(url)
 Bitcoin <- page %>% html_table() %>%
   as.data.frame() %>%  
   mutate(DateTime = Sys.time()) %>%
-  subset(Rank == 1 ) %>% #select baris bitcoin pada dataframe
+  subset(Rank == 1 ) 
 
 message("Connect to MongoDB Cloud")
 atlas <- mongo(

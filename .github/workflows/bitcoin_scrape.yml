@@ -2,7 +2,7 @@ name: Bitcoin Scraping Data Every 2 Hour
 
 on:
   schedule:
-      - cron: '7 * * * *'  # every 7 minutes
+      - cron: '0 * * * *'  # every 7 minutes
 
 
 jobs:
